@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>기초대사량 계산기</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      position: relative;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgb(214, 206, 245);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    text {
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    main {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    select{
+        width: 100%;
+      padding: 5px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px;
+      width: 100%;
+      background-color: #7b22e9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <text>기초대사량 계산기</text>
+
+    <main for="height">키(cm)</main>
+    <input type="number" id="height" placeholder="예: 170">
+
+    <main for="weight">몸무게(kg)</main>
+    <input type="number" id="weight" placeholder="예: 65">
+
+    <main for="age">나이</main>
+    <input type="number" id="age" placeholder="예: 25">
+
+    <main for="gender">성별</main>
+    <select id="gender">
+      <option value="male">남성</option>
+      <option value="female">여성</option>
+    </select>
+
+    <button onclick="calculate()">계산하기</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const height = document.getElementById("height").value;
+      const weight = document.getElementById("weight").value;
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+
+      let bmr;
+
+      if (gender === "male") {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+
+      document.getElementById("result").innerText =
+        "결과: " + Math.round(bmr) + " kcal";
+    }
+  </script>
+</body>
+</html>
